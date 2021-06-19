@@ -47,15 +47,16 @@ function next(ctx) {
 
     }
     else {
-        f1(ctx)
+        ctx.f(ctx)
     }
 }
-function start(ctx) {
+function start(ctx,f) {
     ctx.current=-1
     ctx.mds=[mA, mB, mC]
+    ctx.f=f
     console.log(ctx.mds)
     // current = -1;
     next(ctx)
 }
 
-start({value:5})
+start({value:5},f2)

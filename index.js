@@ -37,9 +37,7 @@ let current=0
 function next(ctx) {
     current++
     if (current < mds.length) {
-
-        mds[current](ctx,next)
-
+         mds[current](ctx,next)
     }
     else {
         ff(ctx)

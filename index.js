@@ -1,4 +1,4 @@
-const fA = (ctx,next) => {
+const mA = (ctx,next) => {
     console.log('pre A start')
     console.log(ctx)
     console.log('pre a finish')
@@ -8,7 +8,7 @@ const fA = (ctx,next) => {
     console.log('after A finish')
 }
 
-const fB = (ctx,next) => {
+const mB = (ctx,next) => {
     console.log('pre B start')
     console.log(ctx)
     console.log('pre B finish')
@@ -17,7 +17,7 @@ const fB = (ctx,next) => {
     console.log(ctx)
     console.log('after B finish')
 }
-const fC = (ctx,next) => {
+const mC = (ctx,next) => {
     console.log('pre C start')
     console.log(ctx)
     console.log('pre C finish')
@@ -27,25 +27,35 @@ const fC = (ctx,next) => {
     console.log('after C finish')
 }
 
-const ff = (ctx) => {
-    console.log('this is ff')
+const f1 = (ctx) => {
+    console.log('this is f1')
 }
-
-let mds = [fA, fB, fC]
-let current=0
+const f2 = (ctx) => {
+    console.log('this is f2')
+}
+const f3 = (ctx) => {
+    console.log('this is f3')
+}
+// let mds = [mA, mB, mC]
+// let current=0
 
 function next(ctx) {
-    current++
-    if (current < mds.length) {
-         mds[current](ctx,next)
+    ctx.current++
+    if (ctx.current < ctx.mds.length) {
+
+        ctx.mds[ctx.current](ctx,next)
+
     }
     else {
-        ff(ctx)
+        f1(ctx)
     }
 }
 function start(ctx) {
-     current = -1;
+    ctx.current=-1
+    ctx.mds=[mA, mB, mC]
+    console.log(ctx.mds)
+    // current = -1;
     next(ctx)
 }
 
-start(5)
+start({value:5})
